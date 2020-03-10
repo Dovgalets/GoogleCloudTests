@@ -3,4 +3,4 @@ target
 
 #Cucumber
 src/test/features/
-src/test/java/cucumber
+src/test/java/cucumber/

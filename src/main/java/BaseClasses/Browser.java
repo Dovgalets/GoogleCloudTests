@@ -1,5 +1,6 @@
 package BaseClasses;
 
+import io.github.bonigarcia.wdm.DriverManagerType;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -11,27 +12,21 @@ public enum Browser {
     FIREFOX {
         @Override
         public WebDriver getDriver() {
-            WebDriverManager.firefoxdriver()
-                    .proxy("proxy.lan:3128")
-                    .setup();
+            webDriverManagerSetUp(DriverManagerType.FIREFOX);
             return new FirefoxDriver();
         }
     },
     IE {
         @Override
         public WebDriver getDriver() {
-            WebDriverManager.iedriver()
-                    .proxy("proxy.lan:3128")
-                    .setup();
+            webDriverManagerSetUp(DriverManagerType.IEXPLORER);
             return new InternetExplorerDriver();
         }
     },
     CHROME {
         @Override
         public WebDriver getDriver() {
-            WebDriverManager.chromedriver()
-                    .proxy("proxy.lan:3128")
-                    .setup();
+            webDriverManagerSetUp(DriverManagerType.CHROME);
             ChromeOptions options = new ChromeOptions();
             options.addArguments(
                     "start-maximized"
@@ -45,6 +40,12 @@ public enum Browser {
     };
 
     public abstract WebDriver getDriver();
+
+    private static void webDriverManagerSetUp(DriverManagerType driverManagerType){
+        WebDriverManager.getInstance(driverManagerType)
+                .proxy("proxy.lan:3128")
+                .setup();
+    }
 
 
 
