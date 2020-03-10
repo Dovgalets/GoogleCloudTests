@@ -1,0 +1,6 @@
+.idea
+target
+
+#Cucumber
+src/test/features/
+src/test/java/cucumber
