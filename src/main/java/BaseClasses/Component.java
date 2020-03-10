@@ -15,7 +15,7 @@ public abstract class Component {
 
     public Component() {
         if (driver == null) {
-            driver = WebDriverFactory.createWebDriver();
+            driver = Browser.CHROME.getDriver();
             driver.manage().timeouts().implicitlyWait(WAIT_TIMEOUT_SECONDS, TimeUnit.SECONDS);
         }
         PageFactory.initElements(driver, this);
