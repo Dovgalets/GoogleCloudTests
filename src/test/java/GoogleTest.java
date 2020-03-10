@@ -26,6 +26,7 @@ public class GoogleTest {
 
         String estimatedPriceFromLetter = GoogleProxy.getPriceFromLetter(PageObjectsFactory.createEmailAddressProviderPage());
 
+
         assertTrue(estimatedPriceFromSite.contains(estimatedPriceFromLetter));
     }
 
