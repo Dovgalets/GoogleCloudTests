@@ -1,6 +1,8 @@
+import BaseClasses.Component;
 import BaseClasses.PageObjectsFactory;
 import GoogleCloud.GoogleCloudCalculatorPage;
 
+import GoogleCloud.GoogleProxy;
 import org.junit.*;
 
 import static org.junit.Assert.assertTrue;
@@ -32,7 +34,7 @@ public class GoogleTest {
 
     @After
     public void closeBrowser() {
-        googleCloud.quit();
+        Component.quit();
     }
 
 }

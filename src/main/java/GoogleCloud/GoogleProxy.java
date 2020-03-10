@@ -1,3 +1,5 @@
+package GoogleCloud;
+
 import EmailAddressProvider.EmailAddressProviderPage;
 import GoogleCloud.GoogleCloudCalculatorPage;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -8,11 +10,11 @@ import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.List;
 
-class GoogleProxy extends GoogleCloudCalculatorPage {
+public class GoogleProxy extends GoogleCloudCalculatorPage {
     private static final int AMOUNT_TABS = 2;
     private static final int WAIT_TABS_SECONDS = 10;
 
-    static String getPriceFromLetter(EmailAddressProviderPage emailProvider) {
+    public static String getPriceFromLetter(EmailAddressProviderPage emailProvider) {
         openNewTab();
 
         new WebDriverWait(getDriver(), WAIT_TABS_SECONDS)
