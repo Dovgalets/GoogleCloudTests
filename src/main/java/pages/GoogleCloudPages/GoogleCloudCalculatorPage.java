@@ -80,7 +80,7 @@ public class GoogleCloudCalculatorPage extends GoogleCloudAbstractPage {
         WaitHelper.waitInvisibilityOf(getDriver(), inputEMail);
     }
 
-    protected static void switchToCalculatorFrame(String window) {
+    public static void switchToCurrentFrame(String window) {
         EmptyPage.getDriver().switchTo().window(window).switchTo().frame(frameCalculator).switchTo().frame(frameMyFrame);
     }
 

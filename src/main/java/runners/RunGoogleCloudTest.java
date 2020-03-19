@@ -4,7 +4,7 @@ import base.PageObjectsFactory;
 
 import contexts.ScenarioContext;
 import pages.GoogleCloudPages.GoogleCloudPricingPage;
-import pages.GoogleProxy;
+import pages.GoogleEmailProviderBridge;
 import org.junit.*;
 
 import static org.junit.Assert.assertTrue;
@@ -30,7 +30,7 @@ public class RunGoogleCloudTest {
         String estimatedPriceFromSite = homePage.getEstimatedPrice();
         scenarioContext.addContext(ScenarioContext.Context.PRICE_OF_PLATFORM_FROM_GOOGLE_CLOUD_SITE, estimatedPriceFromSite);
 
-        String estimatedPriceFromLetter = GoogleProxy.getPriceFromLetter(PageObjectsFactory.createEmailAddressProviderPage());
+        String estimatedPriceFromLetter = GoogleEmailProviderBridge.getPriceFromLetter(PageObjectsFactory.createEmailAddressProviderPage());
         scenarioContext.addContext(ScenarioContext.Context.PRICE_OF_PLATFORM_FROM_EMAIL, estimatedPriceFromLetter);
 
         String amountFromSite = scenarioContext.getContext(ScenarioContext.Context.PRICE_OF_PLATFORM_FROM_EMAIL);

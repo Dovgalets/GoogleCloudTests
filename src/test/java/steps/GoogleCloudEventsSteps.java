@@ -6,7 +6,7 @@ import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import pages.GoogleCloudPages.GoogleCloudPricingPage;
-import pages.GoogleProxy;
+import pages.GoogleEmailProviderBridge;
 
 import static org.junit.Assert.assertTrue;
 
@@ -40,7 +40,7 @@ public class GoogleCloudEventsSteps {
 
     @When("^Receive Price from letter$")
     public void receivePriceFromLetter() {
-        String estimatedPriceFromLetter = GoogleProxy.getPriceFromLetter(PageObjectsFactory.createEmailAddressProviderPage());
+        String estimatedPriceFromLetter = GoogleEmailProviderBridge.getPriceFromLetter(PageObjectsFactory.createEmailAddressProviderPage());
         scenarioContext.addContext(ScenarioContext.Context.PRICE_OF_PLATFORM_FROM_EMAIL, estimatedPriceFromLetter);
     }
 
