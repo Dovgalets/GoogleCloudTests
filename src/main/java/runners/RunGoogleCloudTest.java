@@ -1,6 +1,5 @@
 package runners;
 
-import base.AbstractPage;
 import base.PageObjectsFactory;
 
 import contexts.ScenarioContext;
@@ -17,6 +16,7 @@ public class RunGoogleCloudTest {
     @Before
     public void initClasses() {
         homePage = PageObjectsFactory.createGoogleCloudPricingPage();
+        homePage.createDriver();
     }
 
     @Test
@@ -41,7 +41,7 @@ public class RunGoogleCloudTest {
 
     @After
     public void closeBrowser() {
-        AbstractPage.quit();
+        homePage.shutUp();
     }
 
 }

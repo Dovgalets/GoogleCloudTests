@@ -33,8 +33,8 @@ public class WaitHelper {
                 .until(ExpectedConditions.elementToBeSelected(element));
     }
 
-    public static void waitNumberOfWindowsToBe(WebDriver driver, int amountTabs){
+    public static void waitNumberOfWindowsToBe(WebDriver driver, int amountOfTabs){
         new WebDriverWait(driver, DriverTimeouts.MEDIUM_TIMEOUT.getSeconds())
-                .until(ExpectedConditions.numberOfWindowsToBe(amountTabs));
+                .until(ExpectedConditions.numberOfWindowsToBe(amountOfTabs));
     }
 }

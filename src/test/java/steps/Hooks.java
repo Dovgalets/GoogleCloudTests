@@ -1,5 +1,6 @@
 package steps;
 
+import base.EmptyPage;
 import cucumber.api.Scenario;
 import cucumber.api.java.After;
 import cucumber.api.java.Before;
@@ -7,17 +8,17 @@ import cucumber.api.java.Before;
 
 //@Slf4j
 public class Hooks {
-
+    EmptyPage emptyPage = new EmptyPage();
 
     @Before
     public void beforeScenario(Scenario scenario) {
 //        log.info("**********************************************");
 //        log.info("Start new test: " + scenario.getName());
-//        driverFactory.createDriver();
+//        emptyPage.createDriver();
     }
 
     @After
     public void afterScenario() {
-//        driverFactory.tearDown();
+        emptyPage.shutUp();
     }
 }

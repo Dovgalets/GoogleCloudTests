@@ -1,6 +1,6 @@
 package pages.GoogleCloudPages;
 
-import base.AbstractPage;
+import base.EmptyPage;
 import enums.NumberOfInstances;
 import helpers.WaitHelper;
 import org.openqa.selenium.By;
@@ -49,10 +49,10 @@ public class GoogleCloudCalculatorPage extends GoogleCloudAbstractPage {
     private static WebElement label;
 
     public void selectComputeEngine() {
-        WaitHelper.waitFrameToBeAvailableAndSwitchToIt(driver, frameCalculator);
-        WaitHelper.waitFrameToBeAvailableAndSwitchToIt(driver, frameMyFrame);
-//        WaitHelper.waitElementToBeClickable(driver, computeEngineButton);
-//        computeEngineButton.click();
+        WaitHelper.waitFrameToBeAvailableAndSwitchToIt(getDriver(), frameCalculator);
+        WaitHelper.waitFrameToBeAvailableAndSwitchToIt(getDriver(), frameMyFrame);
+        WaitHelper.waitElementToBeClickable(getDriver(), computeEngineButton);
+        computeEngineButton.click();
     }
 
     public void inputConfiguration() {
@@ -72,20 +72,20 @@ public class GoogleCloudCalculatorPage extends GoogleCloudAbstractPage {
     }
 
     protected static void sendEmailEstimate(String emailAddress) {
-        JavascriptExecutor executor = (JavascriptExecutor) AbstractPage.driver;
+        JavascriptExecutor executor = (JavascriptExecutor) getDriver();
         executor.executeScript("arguments[0].click();", eMailEstimateButton);
-        WebElement inputEMail = AbstractPage.getDriver().findElement(By.xpath("//*[@id=\"" + label.getAttribute("for") + "\"]"));
+        WebElement inputEMail = EmptyPage.getDriver().findElement(By.xpath("//*[@id=\"" + label.getAttribute("for") + "\"]"));
         inputEMail.sendKeys(emailAddress);
         executor.executeScript("arguments[0].click();", sendEmailButton);
-        WaitHelper.waitInvisibilityOf(driver, inputEMail);
+        WaitHelper.waitInvisibilityOf(getDriver(), inputEMail);
     }
 
     protected static void switchToCalculatorFrame(String window) {
-        AbstractPage.getDriver().switchTo().window(window).switchTo().frame(frameCalculator).switchTo().frame(frameMyFrame);
+        EmptyPage.getDriver().switchTo().window(window).switchTo().frame(frameCalculator).switchTo().frame(frameMyFrame);
     }
 
     private void inputNumberOfInstances(NumberOfInstances number) {
-        WaitHelper.waitVisibilityOf(driver, inputInstancesNumber);
+        WaitHelper.waitVisibilityOf(getDriver(), inputInstancesNumber);
         inputInstancesNumber.sendKeys(number.getKeys());
     }
 
@@ -147,7 +147,7 @@ public class GoogleCloudCalculatorPage extends GoogleCloudAbstractPage {
     }
 
     private void pressAddToEstimateButton() {
-        JavascriptExecutor executor = (JavascriptExecutor) AbstractPage.driver;
+        JavascriptExecutor executor = (JavascriptExecutor) getDriver();
         executor.executeScript("arguments[0].click();", addToEstimateButton);
     }
 }

@@ -26,15 +26,15 @@ public class TenMinuteMail extends EmailAddressProviderPage {
 
     @Override
     public String getEMailAddress() {
-        WaitHelper.waitVisibilityOf(driver, address);
+        WaitHelper.waitVisibilityOf(getDriver(), address);
         return address.getAttribute("value");
     }
 
     @Override
     public String getEMailText() {
-        (new WebDriverWait(driver, DriverTimeouts.MEDIUM_TIMEOUT.getSeconds()))
+        (new WebDriverWait(getDriver(), DriverTimeouts.MEDIUM_TIMEOUT.getSeconds()))
                 .until((d) -> d.findElement(By.xpath("//*[@id=\"inbox_count_number\"]")).getText().contains("1"));
-        WaitHelper.waitElementToBeClickable(driver,newLetter);
+        WaitHelper.waitElementToBeClickable(getDriver(),newLetter);
         newLetter.click();
         return letterText.getText();
     }

@@ -1,6 +1,5 @@
 package helpers;
 
-import base.AbstractPage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
