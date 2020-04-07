@@ -23,15 +23,6 @@ public class WaitHelper {
                 .until(ExpectedConditions.visibilityOf(element));
     }
 
-    public static void waitInvisibilityOf(WebDriver driver, WebElement element) {
-        new WebDriverWait(driver, DriverTimeouts.LONG_TIMEOUT.getSeconds())
-                .until(ExpectedConditions.invisibilityOf(element));
-    }
-
-    public static void waitElementToBeSelected(WebDriver driver, WebElement element) {
-        new WebDriverWait(driver, DriverTimeouts.LONG_TIMEOUT.getSeconds())
-                .until(ExpectedConditions.elementToBeSelected(element));
-    }
 
     public static void waitNumberOfWindowsToBe(WebDriver driver, int amountOfTabs){
         new WebDriverWait(driver, DriverTimeouts.MEDIUM_TIMEOUT.getSeconds())

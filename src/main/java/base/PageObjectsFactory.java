@@ -1,7 +1,7 @@
 package base;
 
+import pages.EmailAddressProviderPages.DropMailPage;
 import pages.EmailAddressProviderPages.EmailAddressProviderPage;
-import pages.EmailAddressProviderPages.TenMinuteMail;
 import pages.GoogleCloudPages.GoogleCloudPricingPage;
 
 public class PageObjectsFactory {
@@ -13,7 +13,7 @@ public class PageObjectsFactory {
     }
 
     public static EmailAddressProviderPage createEmailAddressProviderPage() {
-        EmailAddressProviderPage emailAddressProviderPage = new TenMinuteMail();
+        EmailAddressProviderPage emailAddressProviderPage = new DropMailPage();
         emailAddressProviderPage.createDriver();
         return emailAddressProviderPage;
     }

@@ -30,7 +30,9 @@ public enum Browser {
             ChromeOptions options = new ChromeOptions();
             options.addArguments(
                     "start-maximized"
-                    , "enable-automation"
+                    ,"disable-automation"
+                    ,"disable-notifications"
+                    ,"disable-infobars"
 //                    ,"--headless"
 //                    ,"--proxy-server=http://proxy.lan:3128"
 //                    ,"--disable-gpu"
@@ -61,7 +63,7 @@ public enum Browser {
 
     private static void webDriverManagerSetUp(DriverManagerType driverManagerType){
         WebDriverManager.getInstance(driverManagerType)
-                .proxy("proxy.lan:3128")
+//                .proxy("proxy.lan:3128")
                 .setup();
     }
 }

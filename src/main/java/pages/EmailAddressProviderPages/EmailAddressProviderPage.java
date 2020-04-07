@@ -1,14 +1,18 @@
 package pages.EmailAddressProviderPages;
 
 import base.EmptyPage;
+import config.Utils;
 
 public abstract class EmailAddressProviderPage extends EmptyPage {
 
     public EmailAddressProviderPage() {
-        initElements(this);
+        initElements();
     }
 
-    public abstract void openPage();
+    public void openPage(){
+        String url = Utils.getEMailUrl();
+        open(url);
+    }
 
     public abstract String getEMailAddress();
 

@@ -1,14 +1,16 @@
 package pages.GoogleCloudPages;
 
 import base.EmptyPage;
-import enums.NumberOfInstances;
+import enums.OperatingSystemSoftware;
 import helpers.WaitHelper;
+import org.apache.commons.math3.util.Pair;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-import static enums.NumberOfInstances.*;
+import java.util.List;
+
 
 public class GoogleCloudCalculatorPage extends GoogleCloudAbstractPage {
 
@@ -22,10 +24,10 @@ public class GoogleCloudCalculatorPage extends GoogleCloudAbstractPage {
     private WebElement computeEngineButton;
 
     @FindBy(xpath = "//*[@id=\"input_55\"]")
-    private WebElement inputInstancesNumber;
+    private WebElement instancesNumber;
 
     @FindBy(id = "select_80")
-    private WebElement inputMachineType;
+    private WebElement MachineType;
 
     @FindBy(xpath = "//*[@id=\"select_value_label_172\"]/span[1]")
     private WebElement selectLocalSSD;
@@ -51,15 +53,14 @@ public class GoogleCloudCalculatorPage extends GoogleCloudAbstractPage {
     public void selectComputeEngine() {
         WaitHelper.waitFrameToBeAvailableAndSwitchToIt(getDriver(), frameCalculator);
         WaitHelper.waitFrameToBeAvailableAndSwitchToIt(getDriver(), frameMyFrame);
-        WaitHelper.waitElementToBeClickable(getDriver(), computeEngineButton);
-        computeEngineButton.click();
+//        WaitHelper.waitElementToBeClickable(getDriver(), computeEngineButton);
+//        computeEngineButton.click();
     }
 
-    public void inputConfiguration() {
-        inputNumberOfInstances(FOUR);
-        inputOperatingSystem();
-        inputVMClass();
-        inputInstanceType();
+    public void inputConfiguration(List<Pair<String, String>> parameters) {
+        inputOperatingSystem(OperatingSystemSoftware.fromString(parameters.get(0).getValue()));
+        inputVMClass(OperatingSystemSoftware.fromString(parameters.get(1).getValue()));
+        inputMachineType(OperatingSystemSoftware.fromString(parameters.get(2).getValue()));
         addGPUs();
         selectLocalSSD();
         selectDatacenterLocation();
@@ -68,47 +69,44 @@ public class GoogleCloudCalculatorPage extends GoogleCloudAbstractPage {
     }
 
     public String getEstimatedPrice() {
-        return textOfLetter.getText();
+        return textOfLetter.getText().split(" ")[4];
     }
 
-    protected static void sendEmailEstimate(String emailAddress) {
+    public static void sendEmailEstimate(String emailAddress) {
         JavascriptExecutor executor = (JavascriptExecutor) getDriver();
         executor.executeScript("arguments[0].click();", eMailEstimateButton);
         WebElement inputEMail = EmptyPage.getDriver().findElement(By.xpath("//*[@id=\"" + label.getAttribute("for") + "\"]"));
+
         inputEMail.sendKeys(emailAddress);
         executor.executeScript("arguments[0].click();", sendEmailButton);
-        WaitHelper.waitInvisibilityOf(getDriver(), inputEMail);
     }
 
-    public static void switchToCurrentFrame(String window) {
-        EmptyPage.getDriver().switchTo().window(window).switchTo().frame(frameCalculator).switchTo().frame(frameMyFrame);
+    protected static void switchToCurrentFrame(String window) {
+        getDriver().switchTo().window(window).switchTo().frame(frameCalculator).switchTo().frame(frameMyFrame);
     }
 
-    private void inputNumberOfInstances(NumberOfInstances number) {
-        WaitHelper.waitVisibilityOf(getDriver(), inputInstancesNumber);
-        inputInstancesNumber.sendKeys(number.getKeys());
+    public void inputNumberOfInstances(int number) {
+        WaitHelper.waitVisibilityOf(getDriver(), instancesNumber);
+        instancesNumber.sendKeys(Integer.toString(number));
     }
 
-    private GoogleCloudCalculatorPage inputWhatAreTheseInstancesFor() {
-        return this;
+    private void inputWhatAreTheseInstancesFor(){
     }
 
-    private GoogleCloudCalculatorPage inputOperatingSystem() {
-        return this;
+    private void inputOperatingSystem(OperatingSystemSoftware system) {
+
     }
 
-    private GoogleCloudCalculatorPage inputVMClass() {
-        return this;
+    private void inputVMClass(OperatingSystemSoftware system) {
     }
 
-    private GoogleCloudCalculatorPage inputInstanceType() {
+    private void inputMachineType(OperatingSystemSoftware system) {
 //        inputMachineType.click();
 //        JavascriptExecutor executor = (JavascriptExecutor) driver;
 //        executor.executeScript("arguments[0].click();", driver.findElement(By.xpath("//md-option[@id=\"select_option_208\"]/div[1]")));
-        return this;
     }
 
-    private GoogleCloudCalculatorPage addGPUs() {
+    private void addGPUs() {
 //        WebElement addGPUs = driver.findElement(By.xpath("//*[@id=\"mainForm\"]/div[1]/div/md-card/md-card-content/div/div[1]/form/div[8]/div[1]/md-input-container/md-checkbox/div[1]"));
 //        addGPUs.click();
 //        WebElement selectGPUs = driver.findElement(By.xpath("//md-select-value[contains(@id,\"select_value_label_350\")]/span[2]"));
@@ -121,7 +119,6 @@ public class GoogleCloudCalculatorPage extends GoogleCloudAbstractPage {
 //        selectP100.click();
 //        selectGPUs.sendKeys(Keys.ARROW_DOWN);
 //        selectGPUs.sendKeys(Keys.ENTER);
-        return this;
     }
 
 

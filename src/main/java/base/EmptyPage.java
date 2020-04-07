@@ -18,7 +18,7 @@ public class EmptyPage {
         }
     }
 
-    public void shutUp() {
+    public void tearDown() {
         driver.quit();
         driver = null;
     }
@@ -31,7 +31,7 @@ public class EmptyPage {
         driver.get(url);
     }
 
-    protected void initElements(EmptyPage page) {
-        PageFactory.initElements(driver, page);
+    public void initElements() {
+        PageFactory.initElements(driver, this);
     }
 }

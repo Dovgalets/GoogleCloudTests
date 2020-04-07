@@ -24,7 +24,7 @@ public class TabsSwitchHelper {
         driver.switchTo().window(window);
     }
 
-    protected static void switchToFrame(WebDriver driver, WebElement frame) {
-        driver.switchTo().frame(frame);
+    public static void closeCurrentTab(WebDriver driver){
+        driver.close();
     }
 }

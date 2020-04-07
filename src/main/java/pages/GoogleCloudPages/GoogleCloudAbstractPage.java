@@ -8,7 +8,7 @@ import org.openqa.selenium.support.FindBy;
 
 public abstract class GoogleCloudAbstractPage extends EmptyPage {
     public GoogleCloudAbstractPage() {
-        initElements(this);
+        initElements();
     }
 
     @FindBy(xpath = "//a[@href='/pricing']")
